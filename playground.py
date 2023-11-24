@@ -73,13 +73,13 @@ def counting_sort(data, exp1):
     output = [0] * (n)
     count = [0] * (10)
     for i in range(0, n):
-        index = (int(float(data[i][8])) // exp1)
+        index = (int(float(data[i][8]) * 100) // exp1)
         count[(index) % 10] += 1
     for i in range(1, 10):
         count[i] += count[i - 1]
     i = n - 1
     while i >= 0:
-        index = (int(float(data[i][8])) // exp1)
+        index = (int(float(data[i][8]) * 100) // exp1)
         output[count[(index) % 10] - 1] = data[i]
         count[(index) % 10] -= 1
         i -= 1
@@ -89,12 +89,12 @@ def counting_sort(data, exp1):
 
 
 def radix_sort(data):
-    max1 = max(float(row[8]) for row in data)
-    max_digits = len(str(abs(int(max1))))
+    max1 = max(float(row[8]) * 100 for row in data)
     exp = 1
-    for _ in range(max_digits):  # only loop max_digits times
+    while max1 // exp > 0:
         counting_sort(data, exp)
         exp *= 10
+
 
 
 with open('Anime.csv', 'r') as f:
@@ -104,18 +104,18 @@ with open('Anime.csv', 'r') as f:
 anime_data = anime_data[1:]
 anime_data = [row for row in anime_data if row[8] != '']
 
-# data_insertion_sorted = [list(row) for row in anime_data]
-# start_time = time.time()
-# insertion_sort(data_insertion_sorted)
-# end_time = time.time()
-# print("Time taken to perform the insert sort is: %s seconds" % (end_time - start_time))
-#
-# with open('insertion_sort.csv', 'w', newline='') as f:
-#     writer = csv.writer(f)
-#     for row in data_insertion_sorted:
-#         row_to_write = list(row)  # create a copy of the row
-#         # row_to_write[1] = row_to_write[1] + " (" + row_to_write[8] + ")"
-#         writer.writerow([row_to_write[1], row_to_write[8]])
+data_insertion_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+insertion_sort(data_insertion_sorted)
+end_time = time.time()
+print("Time taken to perform the insert sort is: %s seconds" % (end_time - start_time))
+
+with open('insertion_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_insertion_sorted:
+        row_to_write = list(row)  # create a copy of the row
+        # row_to_write[1] = row_to_write[1] + " (" + row_to_write[8] + ")"
+        writer.writerow([row_to_write[1], row_to_write[8]])
 
 data_quick_sorted = [list(row) for row in anime_data]
 start_time = time.time()
