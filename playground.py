@@ -13,26 +13,33 @@ def insertion_sort(data):
     return data
 
 
+import random
+
 def partition(arr, low, high):
-    mid = (high + low) // 2
-    pivot = arr[mid]
-    arr[mid], arr[high] = arr[high], arr[mid]
-    i = low
-
-    for j in range(low, high):
-        if arr[j] <= pivot:
-            arr[i], arr[j] = arr[j], arr[i]
+    pivot_index = random.randint(low, high)
+    arr[low], arr[pivot_index] = arr[pivot_index], arr[low]
+    pivot = arr[low]
+    i = low - 1
+    j = high + 1
+    while True:
+        i += 1
+        while arr[i][8] < pivot[8]:
             i += 1
+        j -= 1
+        while arr[j][8] > pivot[8]:
+            j -= 1
+        if i >= j:
+            return j
+        arr[i], arr[j] = arr[j], arr[i]
 
-    arr[i], arr[high] = arr[high], arr[i]
-    return i
-
-def quick_sort(arr, low, high):
+def quick_sort(arr, low=0, high=None):
+    if high is None:
+        high = len(arr) - 1
     if low < high:
         pi = partition(arr, low, high)
-        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, low, pi)
         quick_sort(arr, pi + 1, high)
-
+    return arr
 
 def heapify(data, n, i):
     largest = i
@@ -90,7 +97,6 @@ def radix_sort(data):
         exp *= 10
 
 
-
 with open('Anime.csv', 'r') as f:
     reader = csv.reader(f)
     anime_data = list(reader)
@@ -98,24 +104,22 @@ with open('Anime.csv', 'r') as f:
 anime_data = anime_data[1:]
 anime_data = [row for row in anime_data if row[8] != '']
 
+# data_insertion_sorted = [list(row) for row in anime_data]
+# start_time = time.time()
+# insertion_sort(data_insertion_sorted)
+# end_time = time.time()
+# print("Time taken to perform the insert sort is: %s seconds" % (end_time - start_time))
+#
+# with open('insertion_sort.csv', 'w', newline='') as f:
+#     writer = csv.writer(f)
+#     for row in data_insertion_sorted:
+#         row_to_write = list(row)  # create a copy of the row
+#         # row_to_write[1] = row_to_write[1] + " (" + row_to_write[8] + ")"
+#         writer.writerow([row_to_write[1], row_to_write[8]])
 
-data_insertion_sorted = [list(row) for row in anime_data]
-start_time = time.time()
-insertion_sort(data_insertion_sorted)
-end_time = time.time()
-print("Time taken to perform the insert sort is: %s seconds" % (end_time - start_time))
-
-with open('insertion_sort.csv', 'w', newline='') as f:
-    writer = csv.writer(f)
-    for row in data_insertion_sorted:
-        row_to_write = list(row)  # create a copy of the row
-        # row_to_write[1] = row_to_write[1] + " (" + row_to_write[8] + ")"
-        writer.writerow([row_to_write[1], row_to_write[8]])
-
-# For quicksort
 data_quick_sorted = [list(row) for row in anime_data]
 start_time = time.time()
-quick_sort(data_quick_sorted, 0, len(data_quick_sorted) - 1)
+quick_sort(data_quick_sorted)
 end_time = time.time()
 print("Time taken to perform the quick sort is: %s seconds" % (end_time - start_time))
 
