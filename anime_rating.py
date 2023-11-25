@@ -88,6 +88,9 @@ def radix_sort(data):
         exp *= 10
 
 
+# Full dataset sorting #
+
+
 with open('Anime.csv', 'r') as f:
     reader = csv.reader(f)
     anime_data = list(reader)
@@ -101,7 +104,7 @@ insertion_sort(data_insertion_sorted)
 end_time = time.time()
 print("Time taken to perform the insert sort is: %s seconds" % (end_time - start_time))
 
-with open('anime_rating_insertion_sort.csv', 'w', newline='') as f:
+with open('output_rating/anime_rating_insertion_sort.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     for row in data_insertion_sorted:
         writer.writerow([row[1], row[8]])
@@ -112,7 +115,7 @@ quick_sort(data_quick_sorted)
 end_time = time.time()
 print("Time taken to perform the quick sort is: %s seconds" % (end_time - start_time))
 
-with open('anime_rating_quick_sort.csv', 'w', newline='') as f:
+with open('output_rating/anime_rating_quick_sort.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     for row in data_quick_sorted:
         writer.writerow([row[1], row[8]])
@@ -123,7 +126,7 @@ heap_sort(data_heap_sorted)
 end_time = time.time()
 print("Time taken to perform the heap sort is: %s seconds" % (end_time - start_time))
 
-with open('anime_rating_heap_sort.csv', 'w', newline='') as f:
+with open('output_rating/anime_rating_heap_sort.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     for row in data_heap_sorted:
         writer.writerow([row[1], row[8]])
@@ -134,7 +137,117 @@ radix_sort(data_radix_sorted)
 end_time = time.time()
 print("Time taken to perform the radix sort is: %s seconds" % (end_time - start_time))
 
-with open('anime_rating_radix_sort.csv', 'w', newline='') as f:
+with open('output_rating/anime_rating_radix_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_radix_sorted:
+        writer.writerow([row[1], row[8]])
+
+
+# 100 first lines sorting #
+
+
+with open('Anime.csv', 'r') as f:
+    reader = csv.reader(f)
+    anime_data = [next(reader) for _ in range(100)]
+
+anime_data = anime_data[1:]
+anime_data = [row for row in anime_data if row[8] != '']
+
+data_insertion_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+insertion_sort(data_insertion_sorted)
+end_time = time.time()
+print("Time taken to perform the insert sort is: %s seconds" % (end_time - start_time))
+
+with open('output_rating/100_anime_rating_insertion_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_insertion_sorted:
+        writer.writerow([row[1], row[8]])
+
+data_quick_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+quick_sort(data_quick_sorted)
+end_time = time.time()
+print("Time taken to perform the quick sort is: %s seconds" % (end_time - start_time))
+
+with open('output_rating/100_anime_rating_quick_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_quick_sorted:
+        writer.writerow([row[1], row[8]])
+
+data_heap_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+heap_sort(data_heap_sorted)
+end_time = time.time()
+print("Time taken to perform the heap sort is: %s seconds" % (end_time - start_time))
+
+with open('output_rating/100_anime_rating_heap_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_heap_sorted:
+        writer.writerow([row[1], row[8]])
+
+data_radix_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+radix_sort(data_radix_sorted)
+end_time = time.time()
+print("Time taken to perform the radix sort is: %s seconds" % (end_time - start_time))
+
+with open('output_rating/100_anime_rating_radix_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_radix_sorted:
+        writer.writerow([row[1], row[8]])
+
+
+# 1000 first lines sorting #
+
+
+with open('Anime.csv', 'r') as f:
+    reader = csv.reader(f)
+    anime_data = [next(reader) for _ in range(1000)]
+
+anime_data = anime_data[1:]
+anime_data = [row for row in anime_data if row[8] != '']
+
+data_insertion_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+insertion_sort(data_insertion_sorted)
+end_time = time.time()
+print("Time taken to perform the insert sort is: %s seconds" % (end_time - start_time))
+
+with open('output_rating/1000_anime_rating_insertion_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_insertion_sorted:
+        writer.writerow([row[1], row[8]])
+
+data_quick_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+quick_sort(data_quick_sorted)
+end_time = time.time()
+print("Time taken to perform the quick sort is: %s seconds" % (end_time - start_time))
+
+with open('output_rating/1000_anime_rating_quick_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_quick_sorted:
+        writer.writerow([row[1], row[8]])
+
+data_heap_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+heap_sort(data_heap_sorted)
+end_time = time.time()
+print("Time taken to perform the heap sort is: %s seconds" % (end_time - start_time))
+
+with open('output_rating/1000_anime_rating_heap_sort.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    for row in data_heap_sorted:
+        writer.writerow([row[1], row[8]])
+
+data_radix_sorted = [list(row) for row in anime_data]
+start_time = time.time()
+radix_sort(data_radix_sorted)
+end_time = time.time()
+print("Time taken to perform the radix sort is: %s seconds" % (end_time - start_time))
+
+with open('output_rating/1000_anime_rating_radix_sort.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     for row in data_radix_sorted:
         writer.writerow([row[1], row[8]])
