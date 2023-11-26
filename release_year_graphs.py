@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 import sorting_algorithms as sa
 
-sa.column = 8
+sa.column = 9
 
 
 def sort_and_time(sort_function, data):
@@ -47,12 +47,14 @@ for data_size in data_sizes:
 
 fig, axs = plt.subplots(2, 2, figsize=(15, 10))
 
+
 for sort_name in sort_names:
     axs[0, 0].plot(data_sizes, sort_times[sort_name], marker='o', label=sort_name)
 axs[0, 0].set_xlabel('Data Size')
 axs[0, 0].set_ylabel('Time (seconds)')
 axs[0, 0].set_title('Time taken by sorting algorithms')
 axs[0, 0].legend()
+
 
 bar_width = 0.2
 opacity = 0.8
