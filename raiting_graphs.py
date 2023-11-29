@@ -27,7 +27,7 @@ def plot_sort_times(sort_times):
 sort_functions = [sa.insertion_sort, sa.quick_sort, sa.heap_sort, sa.radix_sort]
 sort_names = ['Insertion Sort', 'Quick Sort', 'Heap Sort', 'Radix Sort']
 
-data_sizes = [18000, 1000, 100]
+data_sizes = [18000, 1000, 100]  # you can change those values for test, but do not put more than 3
 sort_times = {name: [] for name in sort_names}
 
 for data_size in data_sizes:
@@ -69,4 +69,5 @@ for i, data_size in enumerate(data_sizes):
     axs[(i + 1) // 2, (i + 1) % 2].legend()
 
 plt.tight_layout()
+plt.savefig('raiting_graphs.png')
 plt.show()

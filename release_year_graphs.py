@@ -27,7 +27,7 @@ def plot_sort_times(sort_times):
 sort_functions = [sa.insertion_sort, sa.quick_sort, sa.heap_sort, sa.radix_sort]
 sort_names = ['Insertion Sort', 'Quick Sort', 'Heap Sort', 'Radix Sort']
 
-data_sizes = [18000, 1000, 100]
+data_sizes = [18000, 1000, 100]  # you can change those values for test, but do not put more than 3
 sort_times = {name: [] for name in sort_names}
 
 for data_size in data_sizes:
@@ -44,9 +44,7 @@ for data_size in data_sizes:
         print(f"Time taken to perform the {sort_name} on {data_size} lines is: {sort_time} seconds")
         sort_times[sort_name].append(sort_time)
 
-
 fig, axs = plt.subplots(2, 2, figsize=(15, 10))
-
 
 for sort_name in sort_names:
     axs[0, 0].plot(data_sizes, sort_times[sort_name], marker='o', label=sort_name)
@@ -54,7 +52,6 @@ axs[0, 0].set_xlabel('Data Size')
 axs[0, 0].set_ylabel('Time (seconds)')
 axs[0, 0].set_title('Time taken by sorting algorithms')
 axs[0, 0].legend()
-
 
 bar_width = 0.2
 opacity = 0.8
@@ -71,4 +68,5 @@ for i, data_size in enumerate(data_sizes):
     axs[(i + 1) // 2, (i + 1) % 2].legend()
 
 plt.tight_layout()
+plt.savefig('release_year_graphs.png')
 plt.show()

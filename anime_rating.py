@@ -5,6 +5,7 @@ import sorting_algorithms as sa
 
 sa.column = 8
 
+
 def sort_and_write(sort_function, data, output_file):
     start_time = time.time()
     sort_function(data)
