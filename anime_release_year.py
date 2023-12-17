@@ -5,7 +5,6 @@ import sorting_algorithms as sa
 
 sa.column = 9
 
-
 def sort_and_write(sort_function, data, output_file):
     start_time = time.time()
     sort_function(data)
@@ -33,6 +32,8 @@ def process_data(num_rows, file_prefix):
     sort_and_write(sa.radix_sort, data, f'output_release_year/{file_prefix}anime_release_year_radix_sort.csv')
 
 
-process_data(100, '100_')
-process_data(1000, '1000_')
-process_data(18000, '')
+for i in range(100, 2100, 100):
+    process_data(i, f"{i}_")
+
+for i in range(4000, 19000, 1000):
+    process_data(i, f"{i}_")

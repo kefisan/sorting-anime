@@ -14,7 +14,7 @@ data = data[1:]
 
 for row in data:
     row[8] = random.randint(1000, 9999)
-    row[9] = random.randint(1901, 2023)
+    row[9] = random.randint(1000, 9999)
 
 data.sort(key=lambda x: x[8])
 

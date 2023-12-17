@@ -87,3 +87,12 @@ def radix_sort(data):
     while max1 // exp > 0:
         counting_sort(data, exp)
         exp *= 10
+
+
+def hybrid_sort(data):
+    sorted_data = sorted(data, key=lambda x: x[column])
+    if data == sorted_data:
+        insertion_sort(data)
+    else:
+        quick_sort(data)
+    return data

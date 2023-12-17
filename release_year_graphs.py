@@ -14,20 +14,11 @@ def sort_and_time(sort_function, data):
     return end_time - start_time
 
 
-def plot_sort_times(sort_times):
-    for sort_name, times in sort_times.items():
-        plt.plot(['18k', '1k', '100'], times, label=sort_name)
-    plt.xlabel('Data Size')
-    plt.ylabel('Time (seconds)')
-    plt.title('Sorting Time Comparison')
-    plt.legend()
-    plt.show()
+sort_functions = [sa.insertion_sort, sa.quick_sort, sa.heap_sort, sa.radix_sort, sa.hybrid_sort]
+sort_names = ['Insertion Sort', 'Quick Sort', 'Heap Sort', 'Radix Sort', 'Hybrid Sort']
 
+data_sizes = list(range(100, 2100, 100))
 
-sort_functions = [sa.insertion_sort, sa.quick_sort, sa.heap_sort, sa.radix_sort]
-sort_names = ['Insertion Sort', 'Quick Sort', 'Heap Sort', 'Radix Sort']
-
-data_sizes = [18000, 1000, 100]  # you can change those values for test, but do not put more than 3
 sort_times = {name: [] for name in sort_names}
 
 for data_size in data_sizes:
@@ -56,7 +47,12 @@ axs[0, 0].legend()
 bar_width = 0.2
 opacity = 0.8
 
-for i, data_size in enumerate(data_sizes):
+bar_data_sizes = [min(data_sizes)]
+middle_element = int((len(data_sizes) - 1) / 2)
+bar_data_sizes.append(data_sizes[middle_element])
+bar_data_sizes.append(max(data_sizes))
+
+for i, data_size in enumerate(bar_data_sizes):
     for j, sort_name in enumerate(sort_names):
         axs[(i + 1) // 2, (i + 1) % 2].bar(j + bar_width, sort_times[sort_name][i], bar_width, alpha=opacity,
                                            label=sort_name)
@@ -68,5 +64,5 @@ for i, data_size in enumerate(data_sizes):
     axs[(i + 1) // 2, (i + 1) % 2].legend()
 
 plt.tight_layout()
-plt.savefig('release_year_graphs.png')
+plt.savefig('graphs/release_year_graphs.png')
 plt.show()
