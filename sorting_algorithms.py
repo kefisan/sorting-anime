@@ -8,7 +8,7 @@ def insertion_sort(data):
     for i in range(1, len(data)):
         key = data[i]
         j = i - 1
-        while j >= 0 and int(data[j][column]) > int(key[column]):
+        while j >= 0 and float(data[j][column]) > float(key[column]):
             data[j + 1] = data[j]
             j -= 1
         data[j + 1] = key
@@ -47,9 +47,9 @@ def heapify(data, n, i):
     largest = i
     left = 2 * i + 1
     right = 2 * i + 2
-    if left < n and int(data[i][column]) < int(data[left][column]):
+    if left < n and float(data[i][column]) < float(data[left][column]):
         largest = left
-    if right < n and int(data[largest][column]) < int(data[right][column]):
+    if right < n and float(data[largest][column]) < float(data[right][column]):
         largest = right
     if largest != i:
         data[i], data[largest] = data[largest], data[i]
@@ -70,19 +70,19 @@ def counting_sort(data, exp1):
     output = [0] * n
     count = [0] * 10
     for i in range(n):
-        index = (int(data[i][column]) // exp1)
+        index = (int(float(data[i][column]) * 100) // exp1)
         count[index % 10] += 1
     for i in range(1, 10):
         count[i] += count[i - 1]
     for i in range(n - 1, -1, -1):
-        index = (int(data[i][column]) // exp1)
+        index = (int(float(data[i][column]) * 100) // exp1)
         output[count[index % 10] - 1] = data[i]
         count[index % 10] -= 1
     data[:] = output[:]
 
 
 def radix_sort(data):
-    max1 = max(int(row[column]) * 100 for row in data)
+    max1 = max(float(row[column]) * 100 for row in data)
     exp = 1
     while max1 // exp > 0:
         counting_sort(data, exp)

@@ -1,8 +1,3 @@
-# This code generates the data according to the task.
-# However, algorithms were also tested on original dataset.
-# To perform original data test one may simply change the name of original_sorting_algorithms.py
-# to sorting_algorithms.py and original_Anime.csv to Anime.csv
-
 import csv
 import random
 
