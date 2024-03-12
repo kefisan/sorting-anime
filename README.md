@@ -18,6 +18,6 @@ https://www.kaggle.com/datasets/unibahmad/anime-dataset/
 ## Installation
 To use the program, follow these steps:
 
-1. Clone the repository: git clone https://github.com/kefisan/sorting-anime.git
-2. Navigate to the repository directory: cd sorting-anime
-3. Launch a suitable program: python3 file_name.py
+1. Clone the repository: `git clone https://github.com/kefisan/sorting-anime.git`
+2. Navigate to the repository directory: `cd sorting-anime`
+3. Launch a suitable program: `python3 file_name.py`
